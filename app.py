@@ -119,24 +119,6 @@ if st.button("🚀 Generate Personalized Study Plan", type="primary", use_contai
                 st.error(f"Failed to generate study plan: {e}")
 
 # --- Render Plan & PDF Download ---
-if st.session_state.recommendation_result and st.session_state.last_profile:
-    plan = st.session_state.recommendation_result
-    profile_data = st.session_state.last_profile
-
-    st.divider()
-
-    # Verify type-safe response structure
-    if hasattr(plan, "diagnostic_summary") and hasattr(plan, "weekly_schedule"):
-        # PDF Export Action
-        pdf_bytes = create_study_plan_pdf(profile_data, plan)
-        st.download_button(
-            label="📥 Download Timetable Report as PDF",
-            data=pdf_bytes,
-            file_name=f"Study_Plan_{profile_data.student_id}.pdf",
-            mime="application/pdf"
-        )
-
-        col_diag, col_chart = st.columns([1, 1])
 
        # --- Render Plan & PDF Download ---
 plan = st.session_state.get("recommendation_result")
